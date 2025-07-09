@@ -19,5 +19,14 @@ public class Upgrade_SO : ScriptableObject
     public double upgradeMultiplier;
     public bool isPurchased,canBeHidden;
     public UpgradeType upgradeType;
-   
+
+
+    public void Reset()
+    {
+        UpgradePrice = 1;
+        upgradeLevel = 1;
+        isPurchased = false;
+        canBeHidden = false;
+    }
+
 }

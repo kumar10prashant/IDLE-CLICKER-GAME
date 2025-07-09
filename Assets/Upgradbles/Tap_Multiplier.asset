@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeIcon: {fileID: 0}
   UpgradeName: Tap Multiplier
-  UpgradeDescription: Tap Multiplir increase your reward value when you click on
-    button
+  UpgradeDescription: Tap Multiplier Description
   UpgradePrice: 1
   upgradeLevel: 1
+  upgradeMultiplier: 2
   isPurchased: 0
   canBeHidden: 0
   upgradeType: 1

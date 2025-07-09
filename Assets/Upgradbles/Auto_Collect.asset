@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Auto_Collect
   m_EditorClassIdentifier: 
   UpgradeIcon: {fileID: 0}
-  UpgradeName: Auto Collect Speed
-  UpgradeDescription: This will increase your auto collection speed.
+  UpgradeName: Auto Collect
+  UpgradeDescription: Auto Collect Description
   UpgradePrice: 1
   upgradeLevel: 1
+  upgradeMultiplier: 3
   isPurchased: 0
   canBeHidden: 0
   upgradeType: 0

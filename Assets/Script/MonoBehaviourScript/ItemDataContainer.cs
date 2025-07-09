@@ -10,7 +10,7 @@ public class ItemDataContainer : MonoBehaviour
     public Button button;
     
 
-    public void init(string name, string description, Sprite iconSprite, double buttonTextValue)
+    public void init(string name, string description, Sprite iconSprite = default, double buttonTextValue=0)
     {
         itemName.text = name;
         itemDescription.text = description;

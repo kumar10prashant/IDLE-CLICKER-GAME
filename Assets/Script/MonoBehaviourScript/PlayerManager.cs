@@ -13,13 +13,20 @@ public class PlayerManager : MonoBehaviour
         get => _currentCurrency;
         set
         {
-            _currentCurrency = value;
+            if(_currentCurrency >= double.MaxValue - 1)
+            {
+                _currentCurrency = double.MaxValue;
+            }
+            else
+            {
+                _currentCurrency = value;
+            }
             onCurrencyUpdate?.Invoke();
         }
     }
     public static PlayerManager Instance;
 
-    
+
 
 
     private void Awake()
@@ -34,20 +41,21 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
-        current_Currency = 50;
+       
     }
 
-    private void OnDisable()
-    {
-        
-    }
-
+  
 
     private void Update()
     {
-        current_Currency+=Time.deltaTime*GameManager.Instance.AutoMultiplier;
+        AddCurrency(Time.deltaTime * GameManager.Instance.AutoMultiplier);
     }
 
+
+    public void AddCurrency(double amount)
+    {
+        current_Currency += amount;
+    }
     public void UpdateCurrencyText(TMP_Text text)
     {
         text.text = MoneyFormatter.FormatMoney(current_Currency).ToString();

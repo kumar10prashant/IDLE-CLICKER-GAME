@@ -3,12 +3,15 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+   
     public double AutoMultiplier;
     public double TapMultiplier;
+    public double offlineMultiplier;
 
     private void Awake()
     {
-        if(Instance == null)
+        Application.targetFrameRate = 61; // Set target frame rate to 60 FPS
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -16,24 +19,28 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        AutoMultiplier = 1; // Initial value for auto clicker multiplier
-        TapMultiplier = 1; // Initial value for tap multiplier
+   
+        
     }
     private void OnEnable()
     {
         ShopMenu.autoClickerUpgradeEvent += UpdateAutoMultiplier;
         ShopMenu.TapMultiplierUpgradeEvent += UpdateTapMultiplier;
+        ShopMenu.OfflineMultiplierUpgradeEvent += UpdateOfflineMultiplier;
     }
     private void OnDisable()
     {
         ShopMenu.autoClickerUpgradeEvent -= UpdateAutoMultiplier;
         ShopMenu.TapMultiplierUpgradeEvent -= UpdateTapMultiplier;
+        ShopMenu.OfflineMultiplierUpgradeEvent -= UpdateOfflineMultiplier;
+
     }
 
     public void UpdateAutoMultiplier(double value)
     {
         Debug.Log(value);
         AutoMultiplier += value;
+        Debug.Log(AutoMultiplier);
         if (AutoMultiplier < 0) AutoMultiplier = 0; // Prevent negative multipliers
     }
 
@@ -41,5 +48,11 @@ public class GameManager : MonoBehaviour
     {
         TapMultiplier += value;
         if (TapMultiplier < 0) TapMultiplier = 0; // Prevent negative multipliers
+    }
+
+    public void UpdateOfflineMultiplier()
+    {
+       
+        offlineMultiplier += 2;
     }
 }

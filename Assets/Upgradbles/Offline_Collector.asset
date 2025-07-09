@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Offline_Collector
   m_EditorClassIdentifier: 
   UpgradeIcon: {fileID: 0}
-  UpgradeName: Offline Collector
-  UpgradeDescription: this will collect coin when you are offline
+  UpgradeName: Offline Collector Multiplier
+  UpgradeDescription: Offline Collector Multiplier Description
   UpgradePrice: 1
-  upgradeLevel: 0
+  upgradeLevel: 1
+  upgradeMultiplier: 3
   isPurchased: 0
   canBeHidden: 0
   upgradeType: 2
