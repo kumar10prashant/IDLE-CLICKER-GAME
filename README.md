@@ -1,3 +1,7 @@
+## 🎮 Game Demo Video & APK Link
+
+[Click here to access the gameplay video and APK](https://drive.google.com/drive/folders/1SzLzQOiFZdGIJOmc4DaucNz1YXw0P5kK?usp=drive_link)
+
 # Idle Game Dev Log / ReadMe
 
 ## Note
