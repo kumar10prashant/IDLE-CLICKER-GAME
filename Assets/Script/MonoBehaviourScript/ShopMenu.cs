@@ -11,9 +11,9 @@ public class ShopMenu : MonoBehaviour
     public static ShopMenu Instance;
 
     [Header("Upgrade Events")]
-    [SerializeField] public static Action<double> autoClickerUpgradeEvent;
-    [SerializeField] public static Action<double> TapMultiplierUpgradeEvent;
-    [SerializeField] public static Action OfflineMultiplierUpgradeEvent;
+    public static Action<double> autoClickerUpgradeEvent;
+    public static Action<double> TapMultiplierUpgradeEvent;
+    public static Action OfflineMultiplierUpgradeEvent;
 
 
     private void Awake()
@@ -24,7 +24,7 @@ public class ShopMenu : MonoBehaviour
     {
         for (int i = 0; i < upgradeList.Count; i++)
         {
-        
+
 
 
             GameObject g = Instantiate(ItemDataContainerprefab, parent);
@@ -32,7 +32,7 @@ public class ShopMenu : MonoBehaviour
             int temp = i;
             g.GetComponent<ItemDataContainer>().button.onClick.AddListener(() => BuyUpgrade(upgradeList[temp], g.GetComponent<ItemDataContainer>().buttonText));
         }
-       
+
     }
 
     public void BuyUpgrade(Upgrade_SO upgrade, TMP_Text text = null)
@@ -47,15 +47,15 @@ public class ShopMenu : MonoBehaviour
         {
             case UpgradeType.AutoClicker:
                 autoClickerUpgradeEvent?.Invoke(upgrade.UpgradePrice);
-             
+
                 break;
             case UpgradeType.TapMultiplier:
                 TapMultiplierUpgradeEvent?.Invoke(upgrade.UpgradePrice);
-               
+
                 break;
             case UpgradeType.OfflineMultiplier:
                 OfflineMultiplierUpgradeEvent?.Invoke();
-              
+
 
                 break;
 

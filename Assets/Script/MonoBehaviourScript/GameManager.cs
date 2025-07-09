@@ -38,9 +38,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdateAutoMultiplier(double value)
     {
-        Debug.Log(value);
         AutoMultiplier += value;
-        Debug.Log(AutoMultiplier);
         if (AutoMultiplier < 0) AutoMultiplier = 0; // Prevent negative multipliers
     }
 

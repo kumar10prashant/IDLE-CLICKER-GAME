@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2403e0479f2418240b7716349a323364, type: 3}
   m_Name: Offline_Collector
   m_EditorClassIdentifier: 
+  UniqueId: 2
   UpgradeIcon: {fileID: 0}
   UpgradeName: Offline Collector Multiplier
   UpgradeDescription: Offline Collector Multiplier Description

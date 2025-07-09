@@ -18,11 +18,13 @@ public class Save : MonoBehaviour {
     }
     private void OnApplicationFocus(bool focus)
     {
+#if !UNITY_EDITOR
         if (!focus)
         {
            
             UpdateSave();
         }
+#endif
     }
     public void OnApplicationQuit()
     {
@@ -39,14 +41,23 @@ private void UpdateSave()
             tapMultiplier = GameManager.Instance.TapMultiplier,
             current_Currency = PlayerManager.Instance.current_Currency,
             offlineMultiplier =0,
-            lastSaveTime = DateTime.Now.Ticks
+            lastSaveTime = DateTime.Now.Ticks,
+         
 #else
             autoMultiplier = 1.0, // Default value for testing in editor
             tapMultiplier = 1.0, // Default value for testing in editor
             current_Currency = 0, // Default value for testing in editor
             offlineMultiplier = 0, // Default value for testing in editor
-            lastSaveTime = DateTime.Now.Ticks // Current time in ticks
+            lastSaveTime = DateTime.Now.Ticks, // Current time in ticks
 #endif
+            upgradeData = upgrades.Select(u => new UpgradeData
+            {
+                UniqueId = u.UniqueId,
+                UpgradePrice = u.UpgradePrice,
+                upgradeLevel = u.upgradeLevel,
+                isPurchased = u.isPurchased,
+                canBeHidden = u.canBeHidden
+            }).ToList()
             //upgrades =ShopMenu.Instance.upgradeList
         };
 
@@ -77,6 +88,17 @@ private void UpdateSave()
             Debug.Log(offlineEarnings);
             PlayerManager.Instance.current_Currency = save.current_Currency + offlineEarnings;
             //ShopMenu.Instance.upgradeList = save.upgrades;
+            foreach (var upgradeData in save.upgradeData)
+            {
+                Upgrade_SO upgrade = upgrades.FirstOrDefault(u => u.UniqueId == upgradeData.UniqueId);
+                if (upgrade != null)
+                {
+                    upgrade.UpgradePrice = upgradeData.UpgradePrice;
+                    upgrade.upgradeLevel = upgradeData.upgradeLevel;
+                    upgrade.isPurchased = upgradeData.isPurchased;
+                    upgrade.canBeHidden = upgradeData.canBeHidden;
+                }
+            }
             Debug.Log("Game Loaded Successfully");
         }
         else
@@ -85,17 +107,15 @@ private void UpdateSave()
             GameManager.Instance.AutoMultiplier = 1;
             GameManager.Instance.TapMultiplier = 1;
             GameManager.Instance.offlineMultiplier = 0;
+            PlayerManager.Instance.current_Currency = 0;
+
         }
     }
-    [ContextMenu("Reset")]
+    
     public void Reset()
     {
       
-        foreach (var upgrade in upgrades)
-        {
-            upgrade.Reset();
-        }
-        UpdateSave();
+     
 
         UpdateSave();
 
