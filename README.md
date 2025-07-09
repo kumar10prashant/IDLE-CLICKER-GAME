@@ -104,7 +104,6 @@ offlineMultiplier = 0;
 lastSaveTime = DateTime.Now.Ticks;
 ```
 
-> Note: Upgrade levels are not saved yet — this feature is pending.
 
 ### ⏱️ Offline Earnings
 
@@ -141,12 +140,9 @@ public static Action OfflineMultiplierUpgradeEvent;
 
 ## 🔄 Resetting Data
 
-> I didn’t get time to build a custom inspector for reset functionality, but...
+> I created a custom **Editor Window** script that helps you update the player's coin amount and reset all ScriptableObjects easily from the Unity Editor.
 
-I added a **Context Menu** on the Save class, which allows you to reset data via the Hierarchy:
 
-* Select the `SaveAndLoad` object
-* Use the context menu to reset the data
 
 ---
 
